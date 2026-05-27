@@ -7,7 +7,6 @@
 <meta name="description" content="Find pickup sports games near you, or start your own with your crew. Basketball, pickleball, soccer, volleyball, tennis, and more." />
 <meta name="theme-color" content="#7B6FE9" />
 
-<!-- Open Graph -->
 <meta property="og:title" content="nextup-lfm — find pickup games" />
 <meta property="og:description" content="Find pickup sports games near you, or start your own with your crew. lfm." />
 <meta property="og:type" content="website" />
@@ -24,7 +23,7 @@
     --bg-soft: #f7f7fb;
     --border: #e5e5ec;
     --radius: 12px;
-    --max-width: 1100px;
+    --max-width: 1200px;
   }
 
   * { box-sizing: border-box; }
@@ -37,297 +36,83 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-
   a { color: var(--brand); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
-  /* ────── Layout ────── */
-  .container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  nav { padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); }
+  .nav-brand img { width: 32px; height: 32px; border-radius: 8px; display: block; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 24px; font-size: 15px; }
+  .nav-links a { color: var(--text-secondary); }
 
-  /* ────── Nav ────── */
-  nav {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--text);
-  }
-  .nav-brand img {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-  }
-  .nav-links {
-    display: flex;
-    gap: 24px;
-    font-size: 15px;
-  }
-  .nav-links a {
-    color: var(--text-secondary);
-  }
+  .hero { padding: 80px 0 60px; text-align: center; }
+  .hero-icon { width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px; display: block; box-shadow: 0 10px 30px rgba(123, 111, 233, 0.25); }
+  .hero h1 { font-size: 52px; line-height: 1.1; margin: 0 0 16px; letter-spacing: -1px; font-weight: 800; }
+  .hero h1 .brand-name { color: var(--brand); }
+  .hero-tagline { font-size: 22px; color: var(--text-secondary); max-width: 640px; margin: 0 auto 36px; font-weight: 400; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 16px; font-weight: 600; transition: transform 0.15s ease, box-shadow 0.15s ease; cursor: pointer; }
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover { background: var(--brand-dark); text-decoration: none; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(123, 111, 233, 0.3); }
+  .btn-secondary { background: #fff; color: var(--text); border: 1.5px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--brand); color: var(--brand); text-decoration: none; }
+  .cta-note { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 
-  /* ────── Hero ────── */
-  .hero {
-    padding: 80px 0 60px;
-    text-align: center;
-  }
-  .hero-icon {
-    width: 96px;
-    height: 96px;
-    border-radius: 22px;
-    margin: 0 auto 28px;
-    display: block;
-    box-shadow: 0 10px 30px rgba(123, 111, 233, 0.25);
-  }
-  .hero h1 {
-    font-size: 52px;
-    line-height: 1.1;
-    margin: 0 0 16px;
-    letter-spacing: -1px;
-    font-weight: 800;
-  }
-  .hero h1 .brand-name {
-    color: var(--brand);
-  }
-  .hero-tagline {
-    font-size: 22px;
-    color: var(--text-secondary);
-    max-width: 640px;
-    margin: 0 auto 36px;
-    font-weight: 400;
-  }
-  .cta-row {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 999px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    cursor: pointer;
-  }
-  .btn-primary {
-    background: var(--brand);
-    color: #fff;
-  }
-  .btn-primary:hover {
-    background: var(--brand-dark);
-    text-decoration: none;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(123, 111, 233, 0.3);
-  }
-  .btn-secondary {
-    background: #fff;
-    color: var(--text);
-    border: 1.5px solid var(--border);
-  }
-  .btn-secondary:hover {
-    border-color: var(--brand);
-    color: var(--brand);
-    text-decoration: none;
-  }
-  .cta-note {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
+  .features { background: var(--bg-soft); padding: 80px 0; }
+  .section-title { text-align: center; font-size: 36px; margin: 0 0 12px; letter-spacing: -0.5px; font-weight: 700; }
+  .section-subtitle { text-align: center; font-size: 18px; color: var(--text-secondary); margin: 0 auto 56px; max-width: 560px; }
 
-  /* ────── Features ────── */
-  .features {
-    background: var(--bg-soft);
-    padding: 80px 0;
-  }
-  .section-title {
-    text-align: center;
-    font-size: 36px;
-    margin: 0 0 12px;
-    letter-spacing: -0.5px;
-    font-weight: 700;
-  }
-  .section-subtitle {
-    text-align: center;
-    font-size: 18px;
-    color: var(--text-secondary);
-    margin: 0 auto 56px;
-    max-width: 560px;
-  }
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 28px;
-  }
-  .feature-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-  }
-  .feature-card h3 {
-    margin: 0 0 8px;
-    font-size: 20px;
-    color: var(--text);
-  }
-  .feature-card p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 15px;
-  }
-  .feature-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(123, 111, 233, 0.12);
-    color: var(--brand);
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
+  .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .feature-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 22px; }
+  .feature-card h3 { margin: 0 0 8px; font-size: 18px; color: var(--text); }
+  .feature-card p { margin: 0; color: var(--text-secondary); font-size: 14.5px; line-height: 1.55; }
+  .feature-icon { width: 44px; height: 44px; background: rgba(123, 111, 233, 0.12); color: var(--brand); border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
 
-  /* ────── Screenshots ────── */
-  .screenshots {
-    padding: 80px 0;
-  }
-  .screenshot-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 28px;
-    align-items: start;
-  }
-  .screenshot-item {
-    text-align: center;
-  }
-  .screenshot-item img {
+  .screenshots { padding: 80px 0; }
+  .screenshot-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .screenshot-item { text-align: center; }
+  .phone-frame {
     width: 100%;
-    max-width: 280px;
-    height: auto;
-    border-radius: 28px;
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
-    border: 1px solid var(--border);
-  }
-  .screenshot-item h4 {
-    margin: 18px 0 4px;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .screenshot-item p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--text-secondary);
-    padding: 0 8px;
-  }
-
-  /* ────── Note from developer ────── */
-  .founder-note {
-    background: var(--bg-soft);
-    padding: 80px 0;
-  }
-  .note-card {
-    max-width: 720px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 44px 40px;
-  }
-  .note-card h2 {
-    margin: 0 0 24px;
-    font-size: 28px;
-    text-align: center;
-    letter-spacing: -0.3px;
-  }
-  .note-card p {
-    color: var(--text);
-    margin: 0 0 18px;
-    font-size: 16px;
-  }
-  .note-card .signature {
-    color: var(--text-muted);
-    margin-top: 28px;
-    font-style: italic;
-  }
-  .note-card a {
-    color: var(--brand);
-    font-weight: 500;
-  }
-
-  /* ────── CTA bottom ────── */
-  .cta-bottom {
-    text-align: center;
-    padding: 80px 0;
-  }
-  .cta-bottom h2 {
-    font-size: 36px;
-    margin: 0 0 16px;
-    letter-spacing: -0.5px;
-  }
-  .cta-bottom p {
-    color: var(--text-secondary);
-    font-size: 18px;
-    margin: 0 0 32px;
-  }
-
-  /* ────── Footer ────── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 36px 0;
-    background: #fff;
-  }
-  .footer-inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .footer-brand {
+    aspect-ratio: 9 / 19.5;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #000;
+    border: 4px solid #1a1a1a;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: var(--text-secondary);
-    font-size: 14px;
+    justify-content: center;
   }
-  .footer-brand img {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-  }
-  .footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-    font-size: 14px;
-  }
-  .footer-links a {
-    color: var(--text-secondary);
-  }
+  .phone-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .screenshot-item h4 { margin: 16px 0 4px; font-size: 15px; font-weight: 600; color: var(--text); }
+  .screenshot-item p { margin: 0; font-size: 13px; color: var(--text-secondary); padding: 0 4px; line-height: 1.45; }
 
-  /* ────── Responsive ────── */
+  .founder-note { background: var(--bg-soft); padding: 80px 0; }
+  .note-card { max-width: 720px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 44px 40px; }
+  .note-card h2 { margin: 0 0 24px; font-size: 28px; text-align: center; letter-spacing: -0.3px; }
+  .note-card p { color: var(--text); margin: 0 0 18px; font-size: 16px; }
+  .note-card .signature { color: var(--text-muted); margin-top: 28px; font-style: italic; }
+  .note-card a { color: var(--brand); font-weight: 500; }
+
+  .cta-bottom { text-align: center; padding: 80px 0; }
+  .cta-bottom h2 { font-size: 36px; margin: 0 0 16px; letter-spacing: -0.5px; }
+  .cta-bottom p { color: var(--text-secondary); font-size: 18px; margin: 0 0 32px; }
+
+  footer { border-top: 1px solid var(--border); padding: 36px 0; background: #fff; }
+  .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 14px; }
+  .footer-brand img { width: 24px; height: 24px; border-radius: 6px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px; }
+  .footer-links a { color: var(--text-secondary); }
+
+  @media (max-width: 980px) {
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .screenshot-row { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .screenshot-item h4 { font-size: 13px; }
+    .screenshot-item p { font-size: 11.5px; }
+  }
   @media (max-width: 720px) {
     .hero { padding: 56px 0 40px; }
     .hero h1 { font-size: 38px; }
@@ -336,9 +121,12 @@
     .cta-bottom h2 { font-size: 28px; }
     .note-card { padding: 32px 24px; }
     .nav-links { gap: 16px; font-size: 14px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .screenshot-row { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .screenshot-item h4 { margin-top: 10px; font-size: 11px; }
+    .screenshot-item p { display: none; }
   }
 
-  /* ────── Dark mode ────── */
   @media (prefers-color-scheme: dark) {
     :root {
       --text: #ececec;
@@ -351,18 +139,17 @@
     .feature-card, .note-card, footer { background: #14141b; }
     .btn-secondary { background: #14141b; }
     .nav-brand { color: var(--text); }
-    .screenshot-item img { border-color: #2a2a35; }
+    .phone-frame { border-color: #2a2a35; }
   }
 </style>
 </head>
 
 <body>
 
-<!-- Nav -->
 <nav>
   <div class="container nav-inner">
     <a class="nav-brand" href="#">
-      <img src="images/icon-google-512.png" alt="nextup-lfm icon" />
+      <img src="images/icon-google-512.png" alt="nextup-lfm" />
       nextup-lfm
     </a>
     <div class="nav-links">
@@ -373,10 +160,9 @@
   </div>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="container">
-    <img class="hero-icon" src="images/icon-google-512.png" alt="nextup-lfm icon" />
+    <img class="hero-icon" src="images/icon-google-512.png" alt="nextup-lfm" />
     <h1>find your <span class="brand-name">next</span> pickup game.</h1>
     <p class="hero-tagline">
       nextup is the pickup sports app built for groups, not strangers. find games near you, start your own, and bring your crew.
@@ -389,33 +175,27 @@
   </div>
 </section>
 
-<!-- Features -->
 <section class="features" id="features">
   <div class="container">
     <h2 class="section-title">built for the people you actually play with.</h2>
-    <p class="section-subtitle">
-      every other pickup app optimizes for strangers. nextup is different — the more friends you bring, the better it gets.
-    </p>
+    <p class="section-subtitle">every other pickup app optimizes for strangers. nextup is different — the more friends you bring, the better it gets.</p>
 
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-icon">📍</div>
         <h3>find games near you</h3>
-        <p>browse pickup games happening this week across basketball, pickleball, soccer, volleyball, tennis, and more — all near you.</p>
+        <p>browse pickup games happening this week across basketball, pickleball, soccer, volleyball, tennis, and more.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">🏀</div>
         <h3>host your own run</h3>
-        <p>start a one-off game or a recurring series. set the venue, the time, the size of the run — then invite your friends or open it up.</p>
+        <p>start a one-off game or a recurring series. set the venue, the time, the size — then invite your friends.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">💬</div>
         <h3>chat with your crew</h3>
         <p>every game has a chat. every group has a thread. no more rounding people up across five different group texts.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">✅</div>
         <h3>show up, build trust</h3>
@@ -425,47 +205,41 @@
   </div>
 </section>
 
-<!-- Screenshots -->
 <section class="screenshots" id="screenshots">
   <div class="container">
     <h2 class="section-title">a look inside.</h2>
     <p class="section-subtitle">designed to be fast, clean, and out of your way.</p>
 
-    <div class="screenshot-grid">
+    <div class="screenshot-row">
       <div class="screenshot-item">
-        <img src="images/home_apple.jpeg" alt="Home screen showing your next game and open games this week" />
+        <div class="phone-frame"><img src="images/home_apple.jpeg" alt="" /></div>
         <h4>your home base</h4>
-        <p>next game up top. open games this week below.</p>
+        <p>next game up top.</p>
       </div>
-
       <div class="screenshot-item">
-        <img src="images/search_apple.jpeg" alt="Find games screen with a list of pickup games by sport" />
+        <div class="phone-frame"><img src="images/search_apple.jpeg" alt="" /></div>
         <h4>find a game</h4>
-        <p>filter by sport, location, time — see what's available.</p>
+        <p>filter by sport, time.</p>
       </div>
-
       <div class="screenshot-item">
-        <img src="images/create_game_apple.jpeg" alt="Create game screen with venue, time, and size fields" />
+        <div class="phone-frame"><img src="images/create_game_apple.jpeg" alt="" /></div>
         <h4>host a game</h4>
-        <p>set it up in under a minute. invite your group.</p>
+        <p>set it up in a minute.</p>
       </div>
-
       <div class="screenshot-item">
-        <img src="images/chat_apple.jpeg" alt="Group chat with messages from teammates" />
+        <div class="phone-frame"><img src="images/chat_apple.jpeg" alt="" /></div>
         <h4>group chat</h4>
-        <p>every game and group gets a thread. coordinate without the noise.</p>
+        <p>coordinate the run.</p>
       </div>
-
       <div class="screenshot-item">
-        <img src="images/profile_apple.jpeg" alt="User profile showing stats and games played" />
+        <div class="phone-frame"><img src="images/profile_apple.jpeg" alt="" /></div>
         <h4>your profile</h4>
-        <p>your sports, your crew, your reliability — all in one place.</p>
+        <p>sports, crew, reliability.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Founder note -->
 <section class="founder-note" id="note">
   <div class="container">
     <div class="note-card">
@@ -479,7 +253,6 @@
   </div>
 </section>
 
-<!-- CTA bottom -->
 <section class="cta-bottom">
   <div class="container">
     <h2>ready to play?</h2>
@@ -488,15 +261,14 @@
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img src="images/icon-google-512.png" alt="nextup-lfm icon" />
+      <img src="images/icon-google-512.png" alt="" />
       © 2026 nextup-lfm
     </div>
     <div class="footer-links">
-      <a href="index.html">Privacy Policy</a>
+      <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms / EULA</a>
       <a href="delete-account.html">Delete Account</a>
       <a href="mailto:nextup.lfm@gmail.com">Contact</a>
