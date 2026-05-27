@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>nextup-lfm — find pickup games near you</title>
+<meta name="description" content="Find pickup sports games near you, or start your own with your crew. Basketball, pickleball, soccer, volleyball, tennis, and more." />
+<meta name="theme-color" content="#7B6FE9" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="nextup-lfm — find pickup games" />
+<meta property="og:description" content="Find pickup sports games near you, or start your own with your crew. lfm." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="images/icon-google-512.png" />
+
+<style>
+  :root {
+    --brand: #7B6FE9;
+    --brand-dark: #5d52c2;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --bg: #ffffff;
+    --bg-soft: #f7f7fb;
+    --border: #e5e5ec;
+    --radius: 12px;
+    --max-width: 1100px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ────── Layout ────── */
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ────── Nav ────── */
+  nav {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text);
+  }
+  .nav-brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 15px;
+  }
+  .nav-links a {
+    color: var(--text-secondary);
+  }
+
+  /* ────── Hero ────── */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero-icon {
+    width: 96px;
+    height: 96px;
+    border-radius: 22px;
+    margin: 0 auto 28px;
+    display: block;
+    box-shadow: 0 10px 30px rgba(123, 111, 233, 0.25);
+  }
+  .hero h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    letter-spacing: -1px;
+    font-weight: 800;
+  }
+  .hero h1 .brand-name {
+    color: var(--brand);
+  }
+  .hero-tagline {
+    font-size: 22px;
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    font-weight: 400;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--brand);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--brand-dark);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(123, 111, 233, 0.3);
+  }
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+    text-decoration: none;
+  }
+  .cta-note {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ────── Features ────── */
+  .features {
+    background: var(--bg-soft);
+    padding: 80px 0;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 36px;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+  }
+  .section-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0 auto 56px;
+    max-width: 560px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .feature-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+  }
+  .feature-card h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: var(--text);
+  }
+  .feature-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(123, 111, 233, 0.12);
+    color: var(--brand);
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  /* ────── Screenshots ────── */
+  .screenshots {
+    padding: 80px 0;
+  }
+  .screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+    align-items: start;
+  }
+  .screenshot-item {
+    text-align: center;
+  }
+  .screenshot-item img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 28px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border);
+  }
+  .screenshot-item h4 {
+    margin: 18px 0 4px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .screenshot-item p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding: 0 8px;
+  }
+
+  /* ────── Note from developer ────── */
+  .founder-note {
+    background: var(--bg-soft);
+    padding: 80px 0;
+  }
+  .note-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 44px 40px;
+  }
+  .note-card h2 {
+    margin: 0 0 24px;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: -0.3px;
+  }
+  .note-card p {
+    color: var(--text);
+    margin: 0 0 18px;
+    font-size: 16px;
+  }
+  .note-card .signature {
+    color: var(--text-muted);
+    margin-top: 28px;
+    font-style: italic;
+  }
+  .note-card a {
+    color: var(--brand);
+    font-weight: 500;
+  }
+
+  /* ────── CTA bottom ────── */
+  .cta-bottom {
+    text-align: center;
+    padding: 80px 0;
+  }
+  .cta-bottom h2 {
+    font-size: 36px;
+    margin: 0 0 16px;
+    letter-spacing: -0.5px;
+  }
+  .cta-bottom p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin: 0 0 32px;
+  }
+
+  /* ────── Footer ────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 0;
+    background: #fff;
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .footer-brand img {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: 14px;
+  }
+  .footer-links a {
+    color: var(--text-secondary);
+  }
+
+  /* ────── Responsive ────── */
+  @media (max-width: 720px) {
+    .hero { padding: 56px 0 40px; }
+    .hero h1 { font-size: 38px; }
+    .hero-tagline { font-size: 18px; }
+    .section-title { font-size: 28px; }
+    .cta-bottom h2 { font-size: 28px; }
+    .note-card { padding: 32px 24px; }
+    .nav-links { gap: 16px; font-size: 14px; }
+  }
+
+  /* ────── Dark mode ────── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #ececec;
+      --text-secondary: #b0b0b0;
+      --text-muted: #888;
+      --bg: #0e0e12;
+      --bg-soft: #17171f;
+      --border: #2a2a35;
+    }
+    .feature-card, .note-card, footer { background: #14141b; }
+    .btn-secondary { background: #14141b; }
+    .nav-brand { color: var(--text); }
+    .screenshot-item img { border-color: #2a2a35; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container nav-inner">
+    <a class="nav-brand" href="#">
+      <img src="images/icon-google-512.png" alt="nextup-lfm icon" />
+      nextup-lfm
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#screenshots">Preview</a>
+      <a href="#note">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <img class="hero-icon" src="images/icon-google-512.png" alt="nextup-lfm icon" />
+    <h1>find your <span class="brand-name">next</span> pickup game.</h1>
+    <p class="hero-tagline">
+      nextup is the pickup sports app built for groups, not strangers. find games near you, start your own, and bring your crew.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:nextup.lfm@gmail.com?subject=Notify%20me%20at%20launch&amp;body=Hi%20Chey%2C%20please%20add%20me%20to%20the%20launch%20list.">Get notified at launch</a>
+      <a class="btn btn-secondary" href="#features">See how it works</a>
+    </div>
+    <p class="cta-note">basketball · pickleball · soccer · volleyball · tennis · and more</p>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <h2 class="section-title">built for the people you actually play with.</h2>
+    <p class="section-subtitle">
+      every other pickup app optimizes for strangers. nextup is different — the more friends you bring, the better it gets.
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>find games near you</h3>
+        <p>browse pickup games happening this week across basketball, pickleball, soccer, volleyball, tennis, and more — all near you.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏀</div>
+        <h3>host your own run</h3>
+        <p>start a one-off game or a recurring series. set the venue, the time, the size of the run — then invite your friends or open it up.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>chat with your crew</h3>
+        <p>every game has a chat. every group has a thread. no more rounding people up across five different group texts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>show up, build trust</h3>
+        <p>nextup tracks who shows up and who bails last-minute. play with people you can count on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshots -->
+<section class="screenshots" id="screenshots">
+  <div class="container">
+    <h2 class="section-title">a look inside.</h2>
+    <p class="section-subtitle">designed to be fast, clean, and out of your way.</p>
+
+    <div class="screenshot-grid">
+      <div class="screenshot-item">
+        <img src="images/home_apple.jpeg" alt="Home screen showing your next game and open games this week" />
+        <h4>your home base</h4>
+        <p>next game up top. open games this week below.</p>
+      </div>
+
+      <div class="screenshot-item">
+        <img src="images/search_apple.jpeg" alt="Find games screen with a list of pickup games by sport" />
+        <h4>find a game</h4>
+        <p>filter by sport, location, time — see what's available.</p>
+      </div>
+
+      <div class="screenshot-item">
+        <img src="images/create_game_apple.jpeg" alt="Create game screen with venue, time, and size fields" />
+        <h4>host a game</h4>
+        <p>set it up in under a minute. invite your group.</p>
+      </div>
+
+      <div class="screenshot-item">
+        <img src="images/chat_apple.jpeg" alt="Group chat with messages from teammates" />
+        <h4>group chat</h4>
+        <p>every game and group gets a thread. coordinate without the noise.</p>
+      </div>
+
+      <div class="screenshot-item">
+        <img src="images/profile_apple.jpeg" alt="User profile showing stats and games played" />
+        <h4>your profile</h4>
+        <p>your sports, your crew, your reliability — all in one place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Founder note -->
+<section class="founder-note" id="note">
+  <div class="container">
+    <div class="note-card">
+      <h2>a note from the developer</h2>
+      <p>welcome to nextup. i built this because finding a good pickup game shouldn't be hard — and the best games happen with people you actually like playing with.</p>
+      <p>right now, nextup is brand new. it only works if you bring your crew. the more friends you invite, the better the games get, and the more this becomes the app i always wanted it to be. if you have a regular run, a group chat, or just one buddy who'd be in — pass it along.</p>
+      <p>i'm also actively listening. if something's clunky, broken, or missing, email me at <a href="mailto:nextup.lfm@gmail.com">nextup.lfm@gmail.com</a>. every piece of feedback shapes what comes next.</p>
+      <p>thanks for being early. let's play.</p>
+      <p class="signature">— chey</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA bottom -->
+<section class="cta-bottom">
+  <div class="container">
+    <h2>ready to play?</h2>
+    <p>get on the list. we'll let you know the moment we're live.</p>
+    <a class="btn btn-primary" href="mailto:nextup.lfm@gmail.com?subject=Notify%20me%20at%20launch&amp;body=Hi%20Chey%2C%20please%20add%20me%20to%20the%20launch%20list.">Get notified at launch</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="images/icon-google-512.png" alt="nextup-lfm icon" />
+      © 2026 nextup-lfm
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Privacy Policy</a>
+      <a href="terms.html">Terms / EULA</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="mailto:nextup.lfm@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
